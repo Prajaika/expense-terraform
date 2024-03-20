@@ -3,4 +3,3 @@ output "message" {
 }
 
 variable "env" {}
-
