@@ -22,7 +22,7 @@ resource "null_resource" "ansible" {
 
     inline = [
       "sudo pip3.11 install ansible",
-      "ansible-pull -i localhost, -U https://github.com/prajaika/expense-ansible expense.yml -e env=${var.env} -e role_name=${var.component}"
+      "ansible-pull -i localhost, -U https://github.com/Prajaika/expense-ansible1 expense.yml -e env=${var.env} -e role_name=${var.component}"
     ]
   }
 }
