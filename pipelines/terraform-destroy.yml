@@ -10,7 +10,7 @@ pipelines:
         branch: main
     secure_variables:
       TF_VAR_vault_token: AES:PndChXYa6+tsC60XXRk6gQ==:ogHaEAumLpdF1NgqMf0/nals6yAYeqqCl3vLUTDMOgU=
-    stages:
+      stages:
       - DEV:
           fetch_materials: true
           environment_variables:
