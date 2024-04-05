@@ -28,3 +28,8 @@ module "mysql" {
   zone_id       = var.zone_id
 }
 
+
+resource "local_file" "foo" {
+  content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
+  filename = "/tmp/test"
+}
