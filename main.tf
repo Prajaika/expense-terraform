@@ -36,5 +36,5 @@ resource "local_file" "foo" {
 }
 
 data "vault_generic_secret" "ssh" {
-path = "common"
+path = "expense-dev/frontend"
 }
