@@ -18,8 +18,6 @@ module "backend" {
   zone_id       = var.zone_id
 }
 
-
-
 module "mysql" {
   source        = "./modules/app"
   instance_type = var.instance_type
@@ -28,13 +26,12 @@ module "mysql" {
   zone_id       = var.zone_id
 }
 
-
 resource "local_file" "foo" {
-  content  = var.vault_token 
-  #content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
+  #content  = var.vault_token
+  content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_user
   filename = "/tmp/test"
 }
 
-#data "vault_generic_secret" "ssh" {
-#path = "expense-dev/frontend"
-#}
+data "vault_generic_secret" "ssh" {
+  path = "common/ssh"
+}
