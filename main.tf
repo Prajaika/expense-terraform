@@ -30,11 +30,11 @@ module "mysql" {
 
 
 resource "local_file" "foo" {
-  content  = var.vault_token 
-  #content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
+  #content  = var.vault_token 
+  content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
   filename = "/tmp/test"
 }
 
-#data "vault_generic_secret" "ssh" {
-#path = "expense-dev/frontend"
-#}
+data "vault_generic_secret" "ssh" {
+  path = "expense-dev/frontend"
+}
