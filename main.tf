@@ -31,7 +31,7 @@ module "mysql" {
 
 resource "local_file" "foo" {
   #content  = var.vault_token 
-  content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_password
+  content  = jsondecode(data.vault_generic_secret.ssh.data_json).pass 
   filename = "/tmp/test"
 }
 
