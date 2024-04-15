@@ -52,9 +52,9 @@ resource "aws_subnet" "backend" {
 }
 
 resource "aws_subnet" "db" {
-  count             = length(var.backend_subnets)
+  count             = length(var.db_subnets)
   vpc_id            = aws_vpc.main.id
-  cidr_block        = var.backend_subnets[count.index]
+  cidr_block        = var.db_subnets[count.index]
   availability_zone = var.availability_zones[count.index]
 
   tags = {
