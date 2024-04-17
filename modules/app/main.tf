@@ -20,6 +20,12 @@ resource "aws_security_group" "main" {
   tags = {
     Name = "${var.component}-${var.env}-sg"
   }
+
+  lifecycle {
+    ignore_changes = [
+    ami
+    ]
+  }
 }
 
 
