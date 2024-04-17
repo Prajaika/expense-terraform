@@ -93,6 +93,7 @@ resource "aws_lb_target_group" "main" {
   vpc_id               = var.vpc_id
   deregistration_delay = 15
 
+
   health_check {
     healthy_threshold   = 2
     interval            = 5
