@@ -68,7 +68,7 @@ resource "aws_route53_record" "server" {
 }
 
 resource "aws_route53_record" "load_balancer" {
-  count   = var.lb_needed ? 0 : 1
+  count   = var.lb_needed ? 1 : 0
   name    = "${var.component}-${var.env}"
   type    = "CNAME"
   zone_id = var.zone_id
