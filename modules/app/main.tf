@@ -57,6 +57,7 @@ resource "null_resource" "ansible" {
     inline = [
       "rm -f ~/secrets.json ~/app.json"
     ]
+  }
 }
 
 resource "aws_route53_record" "server" {
