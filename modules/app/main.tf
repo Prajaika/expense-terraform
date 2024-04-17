@@ -34,6 +34,12 @@ resource "aws_instance" "instance" {
     monitor = "yes"
     env     = var.env
   }
+
+  lifecycle {
+    ignore_changes = [
+    ami
+    ]
+  }
 }
 
 #resource "null_resource" "ansible" {
@@ -80,12 +86,23 @@ resource "aws_lb" "main" {
 }
 
 resource "aws_lb_target_group" "main" {
-  count    = var.lb_needed ? 1 : 0
-  name     = "${var.env}-${var.component}-tg"
-  port     = var.app_port
-  protocol = "HTTP"
-  vpc_id   = var.vpc_id
+  count                = var.lb_needed ? 1 : 0
+  name                 = "${var.env}-${var.component}-tg"
+  port                 = var.app_port
+  protocol             = "HTTP"
+  vpc_id               = var.vpc_id
+  deregistration_delay = 15
+
+  health_check {
+    healthy_threshold   = 2
+    interval            = 5
+    path                = "/health"
+    port                = var.app_port
+    timeout             = 2
+    unhealthy_threshold = 2
+  }
 }
+
 resource "aws_lb_target_group_attachment" "main" {
   count            = var.lb_needed ? 1 : 0
   target_group_arn = aws_lb_target_group.main[0].arn
