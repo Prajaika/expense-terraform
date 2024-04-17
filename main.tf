@@ -1,12 +1,12 @@
-resource "local_file" "foo" {
+#resource "local_file" "foo" {
   #content  = var.vault_token
-  content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_user
- filename = "/tmp/test"
-}
+ # content  = jsondecode(data.vault_generic_secret.ssh.data_json).ansible_user
+ #filename = "/tmp/test"
+#}
 
-data "vault_generic_secret" "ssh" {
-   path = "common/common"
-}
+#data "vault_generic_secret" "ssh" {
+ #  path = "common/common"
+#}
 
 module "frontend" {
   depends_on = [module.backend]
