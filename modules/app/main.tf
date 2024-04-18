@@ -89,7 +89,7 @@ resource "aws_route53_record" "server" {
   ttl     = 30
 }
 
-resource "aws_route53_record" "load-balancer" {
+resource "aws_route53_record" "load_balancer" {
   count   = var.lb_needed ? 1 : 0
   name    = "${var.component}-${var.env}"
   type    = "CNAME"
@@ -98,7 +98,7 @@ resource "aws_route53_record" "load-balancer" {
   ttl     = 30
 }
 
-resource "aws_route53_record" "load-balancer" {
+resource "aws_route53_record" "load_balancer" {
   count       = var.lb_needed ? 1 : 0
   name        = "${var.component}-${var.env}-lb-sg"
   description = "${var.component}-${var.env}-lb-sg"
@@ -128,7 +128,7 @@ resource "aws_lb" "main" {
   name               = "${var.env}-${var.component}-alb"
   internal           = var.lb_type == "public" ? false : true
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.load-balancer[0].id]
+  security_groups    = [aws_security_group.load_balancer[0].id]
   subnets            = var.lb_subnets
 
   tags = {
