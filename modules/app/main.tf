@@ -89,7 +89,7 @@ resource "aws_route53_record" "server" {
   ttl     = 30
 }
 
-resource "aws_route53_record" "load_balancer" {
+resource "aws_route53_record" "load-balancer" {
   count   = var.lb_needed ? 1 : 0
   name    = "${var.component}-${var.env}"
   type    = "CNAME"
@@ -98,7 +98,7 @@ resource "aws_route53_record" "load_balancer" {
   ttl     = 30
 }
 
-resource "aws_route53_record" "load_balancer" {
+resource "aws_security_group" "load-balancer" {
   count       = var.lb_needed ? 1 : 0
   name        = "${var.component}-${var.env}-lb-sg"
   description = "${var.component}-${var.env}-lb-sg"
