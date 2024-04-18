@@ -35,6 +35,12 @@ resource "aws_instance" "instance" {
     monitor = "yes"
     env     = var.env
   }
+
+  lifecycle {
+    ignore_changes = [
+      ami
+    ]
+  }
 }
 
 resource "null_resource" "ansible" {
